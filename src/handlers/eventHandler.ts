@@ -3,7 +3,7 @@ import { readdirSync } from "fs";
 import { join } from "path";
 
 export function loadEvents(client: Client) {
-    const eventsPath = join(__dirname, "../events");
+    const eventsPath = join(__dirname, "events");
     const eventFiles = readdirSync(eventsPath).filter(file => file.endsWith(".ts") || file.endsWith(".js"));
 
     for (const file of eventFiles) {
