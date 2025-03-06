@@ -38,7 +38,8 @@
 
     "start": "npm i && npm run build && node dist/index.js",
 
-    "build": "tsup src --out-dir dist --minify --sourcemap"
+   "build": "tsup src --out-dir dist --minify --sourcemap"
+
 
   }
 
