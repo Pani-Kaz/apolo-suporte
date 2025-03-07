@@ -12,8 +12,8 @@ initClient().then(() => {
     client.guilds.cache.forEach(async (guild) => {
       await deployCommands({ guildId: guild.id });
     });
-    loadEvents(client);
   });
+  loadEvents(client);
 });
 
 const PORT = process.env.APP_PORT || 3000;
