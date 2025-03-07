@@ -1,6 +1,4 @@
 import { OpenAI } from 'openai';
-import prisma from '../common/config/prisma';
-import { Client, Interaction, TextChannel, Message } from "discord.js";
 import { getAndSendUser } from '../utils/complaint/getAndSendUser';
 import { sendComplaint } from '../utils/complaint/sendComplaint';
 import { closeReport } from '../utils/complaint/closeReport';

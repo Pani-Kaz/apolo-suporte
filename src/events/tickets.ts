@@ -19,7 +19,7 @@ export async function execute(interaction: Interaction) {
                 if (!data) return await interaction.channel?.delete();
 
 
-                const transcript = await generateTranscriptData(data.user_id, data.channel_id);
+                const transcript = await generateTranscriptData(data.user_id, data.channel_id, interaction.client);
                 await prisma.tickets.update({
                     where: {
                         id: data.id
