@@ -6,6 +6,7 @@ export const data = new SlashCommandBuilder()
     .setDescription("Send the tickets message");
 
 export async function execute(interaction: CommandInteraction) {
+    if(!interaction.member?.permissions.toString().includes('Administrator')) return await interaction.reply({content: 'Você não tem permissão para executar esse comando!', ephemeral: true});
     await interaction.deferReply({ flags: "Ephemeral" });
 
     const channel = interaction.channel as TextChannel;
