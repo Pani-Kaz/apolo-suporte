@@ -88,7 +88,7 @@ export async function execute(interaction: Interaction) {
                                 .setEmoji('1129505065934278796')
                         );
 
-                    (client.channels.cache.get(config.TICKETS_CLOSED || "") as TextChannel)?.send({
+                    (interaction.guild?.channels.cache.get(config.TICKETS_CLOSED || "") as TextChannel)?.send({
                         embeds: [
                             embed
                         ],
@@ -101,7 +101,7 @@ export async function execute(interaction: Interaction) {
                         components: [transcriptButton]
                     }).catch(err => { })
                 };
-                const ticketsOpenedLogs = client.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
+                const ticketsOpenedLogs = interaction.guild?.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
                 let message: any;
                 const staffId = data?.staff_id;
                 if (staffId) {
@@ -192,7 +192,7 @@ export async function execute(interaction: Interaction) {
                 joinTicket
             ]
         });
-        const ticketsOpenedLogs = client.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
+        const ticketsOpenedLogs = interaction.guild?.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
         const msgLogs = await ticketsOpenedLogs.send({
             embeds: [
                 new EmbedBuilder()
