@@ -8,14 +8,12 @@ services:
       - postgres
     environment:
       - DATABASE_URL=${DATABASE_URL}
-    volumes:
-      - .:/app
     ports:
-      - "${APP_PORT}:3000"
-    restart: always
+      - "${APP_PORT}:${APP_PORT}"
+    restart: unless-stopped
     env_file:
       - .env
-
+      
   postgres:
     image: postgres:15
     container_name: apolo-suporte-db

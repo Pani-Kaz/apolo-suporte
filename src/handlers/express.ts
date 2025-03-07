@@ -2,7 +2,6 @@ import express, { Request, Response } from "express";
 import prisma from "../common/config/prisma";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -28,6 +27,4 @@ app.get("/:id", async (req: Request, res: Response): Promise<any> => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+export default app;

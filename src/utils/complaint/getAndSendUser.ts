@@ -1,4 +1,5 @@
-import { client } from "../../index";
+
+import { client } from "../../common/config/client";
 import prisma from "../../common/config/prisma";
 import { EmbedBuilder, TextChannel } from "discord.js";
 

@@ -2,8 +2,8 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, EmbedBuilder
 import { addMessageToThread } from "../handlers/handleComplaint";
 import prisma from "../common/config/prisma";
 import { ticketsOpened } from "../common/templates/ticketsOpened";
-import { client } from "..";
 import { generateTranscriptData } from "../utils/transcriptUtils";
+import { client } from "../common/config/client";
 
 export const name = "interactionCreate";
 export const once = false;
@@ -127,7 +127,7 @@ export async function execute(interaction: Interaction) {
             }
         });
         if(ticketsOpenedToUser) return await interaction.reply({ content: 'Voce possui um ticket aberto, feche-o para abrir um novo!', flags: "Ephemeral" });
-        
+
         await interaction.deferReply({ flags: "Ephemeral" });
         const category = interaction.values[0];
         const channel = interaction.channel as TextChannel;

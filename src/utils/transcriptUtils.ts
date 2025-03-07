@@ -1,6 +1,7 @@
 import { TextChannel } from "discord.js";
-import { client } from "../index";
+
 import { createTranscript } from "discord-html-transcripts";
+import { client } from "../common/config/client";
 export const generateTranscriptData = async (user_id: string, thread_id: string) => {
         
     let messages: any[] = [];

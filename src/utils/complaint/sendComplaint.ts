@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from "discord.js";
-import { client } from "../../index";
+
 import prisma from "../../common/config/prisma";
+import { client } from "../../common/config/client";
 
 export const sendComplaint = async (thread_id: string) => {
     const thread = await prisma.complaint.findFirst({
