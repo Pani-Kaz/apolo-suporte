@@ -1,9 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, EmbedBuilder, Interaction, ModalBuilder, TextChannel, TextInputBuilder, TextInputStyle, ThreadChannel } from "discord.js";
-import { addMessageToThread } from "../handlers/handleComplaint";
 import prisma from "../common/config/prisma";
 import { ticketsOpened } from "../common/templates/ticketsOpened";
 import { generateTranscriptData } from "../utils/transcriptUtils";
-import { client } from "../common/config/client";
 import { config } from "../common/config/bot";
 
 export const name = "interactionCreate";
@@ -45,7 +43,7 @@ export async function execute(interaction: Interaction) {
                 });
                 await (interaction.channel as ThreadChannel)?.setLocked(true);
                 await (interaction.channel as ThreadChannel)?.setArchived(true);
-                const user = await client.users.fetch(data.user_id).catch(() => {
+                const user = await interaction.client.users.fetch(data.user_id).catch(() => {
                     return null;
                 })
                 const channel = interaction.channel as TextChannel;
@@ -70,7 +68,7 @@ export async function execute(interaction: Interaction) {
                             },
                             {
                                 name: `<:error:1096580230870732920> Fechado por`,
-                                value: `<@${interaction.user.id || client.user?.id}>`,
+                                value: `<@${interaction.user.id || interaction.client.user?.id}>`,
                                 inline: true,
                             },
                             {

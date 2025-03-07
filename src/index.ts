@@ -12,17 +12,14 @@ initClient().then(() => {
     client.guilds.cache.forEach(async (guild) => {
       await deployCommands({ guildId: guild.id });
     });
+    loadEvents(client);
   });
-
-  loadEvents(client);
 });
 
 const PORT = process.env.APP_PORT || 3000;
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
-
-export { client, app };
 
 process.on('uncaughtException', e => {
   console.log(e)
