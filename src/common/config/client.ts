@@ -9,6 +9,7 @@ export async function initClient() {
         intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent", "GuildMembers"],
       });
     await client.login(config.TOKEN);
+    client = client;
   }
 }
 
