@@ -1,16 +1,10 @@
 import { Client } from "discord.js";
 import { config } from "./bot";
 
-let client: Client;
+const client = new Client({
+    intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent", "GuildMembers"],
+});
 
-export async function initClient() {
-  if (!client) {
-    client = new Client({
-        intents: ["Guilds", "GuildMessages", "DirectMessages", "MessageContent", "GuildMembers"],
-      });
-    await client.login(config.TOKEN);
-    client = client;
-  }
-}
+client.login(config.TOKEN);
 
 export { client };
