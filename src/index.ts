@@ -23,3 +23,11 @@ app.listen(PORT, () => {
 });
 
 export { client, app };
+
+process.on('uncaughtException', e => {
+  console.log(e)
+})
+
+process.on('unhandledRejection', e => {
+  console.log(e)
+})
