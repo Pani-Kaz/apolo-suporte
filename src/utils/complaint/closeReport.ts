@@ -1,4 +1,5 @@
 
+import { config } from "../../common/config/bot";
 import { client } from "../../common/config/client";
 import prisma from "../../common/config/prisma";
 import { EmbedBuilder, TextChannel } from "discord.js";
@@ -58,7 +59,7 @@ export const closeReport = async (thread_id: string, reason: string, isReject: b
                 inline: false,
             },
         );
-        (client.channels.cache.get(process?.env?.LOGS_REPORT || "") as TextChannel)?.send({
+        (client.channels.cache.get(config.LOGS_REPORT || "") as TextChannel)?.send({
             embeds: [
                 embed
             ]

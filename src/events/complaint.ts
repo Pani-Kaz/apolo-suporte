@@ -2,6 +2,7 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, EmbedBuilder
 import { addMessageToThread } from "../handlers/handleComplaint";
 import prisma from "../common/config/prisma";
 import { closeReport } from "../utils/complaint/closeReport";
+import {config} from '../common/config/bot'
 
 export const name = "interactionCreate";
 export const once = false;
@@ -70,7 +71,7 @@ export async function execute(interaction: Interaction) {
         };
     } else if(customId === "complaint_close") {
         const member = await interaction.guild?.members.fetch(interaction.user.id);
-        if(member?.roles.cache.has(process.env.SUPPORT_ID || "")) {
+        if(member?.roles.cache.has(config.SUPPORT_ID || "")) {
             await interaction.showModal(
                 new ModalBuilder()
                 .setTitle('Fechar denúncia')

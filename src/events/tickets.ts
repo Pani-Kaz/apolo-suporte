@@ -4,6 +4,7 @@ import prisma from "../common/config/prisma";
 import { ticketsOpened } from "../common/templates/ticketsOpened";
 import { generateTranscriptData } from "../utils/transcriptUtils";
 import { client } from "../common/config/client";
+import { config } from "../common/config/bot";
 
 export const name = "interactionCreate";
 export const once = false;
@@ -83,11 +84,11 @@ export async function execute(interaction: Interaction) {
                             new ButtonBuilder()
                                 .setStyle(ButtonStyle.Link)
                                 .setLabel('Ir para o transcript')
-                                .setURL(`${process.env.TICKETS_DATA}/${data.id}`)
+                                .setURL(`${config.TICKETS_DATA}/${data.id}`)
                                 .setEmoji('1129505065934278796')
                         );
 
-                    (client.channels.cache.get(process?.env?.TICKETS_CLOSED || "") as TextChannel)?.send({
+                    (client.channels.cache.get(config.TICKETS_CLOSED || "") as TextChannel)?.send({
                         embeds: [
                             embed
                         ],
@@ -100,7 +101,7 @@ export async function execute(interaction: Interaction) {
                         components: [transcriptButton]
                     }).catch(err => { })
                 };
-                const ticketsOpenedLogs = client.channels.cache.get(process.env.TICKETS_OPENED || "") as TextChannel;
+                const ticketsOpenedLogs = client.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
                 let message: any;
                 const staffId = data?.staff_id;
                 if (staffId) {
@@ -147,7 +148,7 @@ export async function execute(interaction: Interaction) {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(closeButton);
 
         const welcome = await thread.send({
-            content: `${interaction.user.toString()} <@&${process.env.SUPPORT_ID}>`,
+            content: `${interaction.user.toString()} <@&${config.SUPPORT_ID}>`,
             embeds: [
                 new EmbedBuilder()
                     .setTitle(`Atendimento - ${category}`)
@@ -191,7 +192,7 @@ export async function execute(interaction: Interaction) {
                 joinTicket
             ]
         });
-        const ticketsOpenedLogs = client.channels.cache.get(process.env.TICKETS_OPENED || "") as TextChannel;
+        const ticketsOpenedLogs = client.channels.cache.get(config.TICKETS_OPENED || "") as TextChannel;
         const msgLogs = await ticketsOpenedLogs.send({
             embeds: [
                 new EmbedBuilder()

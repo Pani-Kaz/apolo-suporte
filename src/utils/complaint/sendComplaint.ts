@@ -2,6 +2,7 @@ import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel
 
 import prisma from "../../common/config/prisma";
 import { client } from "../../common/config/client";
+import { config } from "../../common/config/bot";
 
 export const sendComplaint = async (thread_id: string) => {
     const thread = await prisma.complaint.findFirst({
@@ -23,7 +24,7 @@ export const sendComplaint = async (thread_id: string) => {
         return null;
     })
     channel.send({
-        content: `<@&${process.env.SUPPORT_ID}>`,
+        content: `<@&${config.SUPPORT_ID}>`,
         embeds: [
             new EmbedBuilder()
             .setTitle('Nova denuncia')
