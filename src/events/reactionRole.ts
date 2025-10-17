@@ -1,7 +1,7 @@
 import { Client, MessageReaction, TextChannel } from "discord.js";
 
 export const name = "messageReactionAdd";
-export const once = true;
+export const once = false;
 export async function execute(message: MessageReaction, reaction: any, data: any) {
     if(message.message.channelId == '1134587854853509162' || message.message.channelId == '1424969254595203165') {
         if(message.emoji.id == '1306131834698076170') {
