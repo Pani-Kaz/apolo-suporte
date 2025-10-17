@@ -1,20 +1,18 @@
 import { client } from "./common/config/client";
 import { loadEvents } from "./handlers/eventHandler";
 import { deployCommands } from "./handlers/deployCommands";
-import app from "./handlers/express";
+import { TextChannel } from "discord.js";
 
-
-client.once("ready", () => {
+client.once("ready", async () => {
+  const ch = await client.channels.fetch("1424969254595203165");
+  if(ch) {
+   await (ch as TextChannel).messages.fetch();
+  }
   client.guilds.cache.forEach(async (guild) => {
     await deployCommands({ guildId: guild.id });
   });
 });
 loadEvents(client);
-
-const PORT = process.env.APP_PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-});
 
 process.on('uncaughtException', e => {
   console.log(e)
