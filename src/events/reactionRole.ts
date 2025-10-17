@@ -7,10 +7,8 @@ export async function execute(message: MessageReaction, reaction: any, data: any
         if(message.emoji.id == '1306131834698076170') {
             const guild = message.message.guild;
             if(!guild) return;
-            const role = guild.roles.cache.get('1424967445361463438');
-            if(!role) return;
             const member = await guild.members.fetch(reaction.id);
-            member.roles.add(role.id);
+            member.roles.add('1424967445361463438');
             (guild.channels.cache.get('1255951031406432357') as TextChannel)?.send({
                 content: `<@${reaction.id}> recebeu o cargo de <@&1424967445361463438> por reagir a mensagem ${message.message.url}!`,
                 allowedMentions: { users: [reaction.id], roles: [] }
